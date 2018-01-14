@@ -9,9 +9,3 @@
   longitude: !secret longitude_work
   radius: 450
   icon: mdi:castle
-
-- name: Marie
-  latitude: !secret latitude_marie
-  longitude: !secret longitude_marie
-  radius: 450
-  icon: mdi:heart-box
