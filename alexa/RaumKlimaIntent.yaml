@@ -1,0 +1,5 @@
+speech:
+  type: plaintext
+  text:
+    Im {{ Raum }} hat es
+    {{ states('sensor.temperatur') | round }} Grad

@@ -1,0 +1,33 @@
+- platform: darksky
+  api_key: !secret darksky_key
+  units: auto
+  monitored_conditions:
+  - temperature
+  - apparent_temperature
+  - cloud_cover
+  - summary
+  - hourly_summary
+
+- platform: command_line
+  scan_interval: 600
+  command: /home/homeassistant/.homeassistant/script/check_site.sh beutler.nl
+  name: B.NL
+
+- platform: command_line
+  scan_interval: 600
+  command: /home/homeassistant/.homeassistant/script/check_site.sh ellers-raumdesign.de
+  name: ERD.DE
+
+- platform: command_line
+  scan_interval: 600
+  command: /home/homeassistant/.homeassistant/script/check_site.sh schoener-boden-juelich.de
+  name: SBJ.DE
+
+- platform: rest
+  resource: https://pypi.python.org/pypi/homeassistant/json
+  name: HA Current Version
+  value_template: '{{ value_json.info.version }}'
+
+- platform: command_line
+  name: Installed Version
+  command: 'cat /home/homeassistant/.homeassistant/.HA_VERSION'

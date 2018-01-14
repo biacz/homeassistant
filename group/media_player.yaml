@@ -1,0 +1,5 @@
+media_player:
+  name: Media
+  view: no
+  entities:
+    - media_player.kodi

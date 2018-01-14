@@ -1,0 +1,9 @@
+!.gitignore
+.cloud
+deps
+*.db
+*.log
+.uuid
+ios.conf
+secrets.yaml
+known_devices.yaml

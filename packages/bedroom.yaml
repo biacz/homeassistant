@@ -1,0 +1,14 @@
+homeassistant:
+  customize:
+    light.yeelight_rgb_34ce008228f2:
+      friendly_name: "Schlafzimmer Deckenlampe"
+      emulated_hue_name: "Deckenlampe"
+      emulated_hue: true
+
+group:
+  bedroom:
+    name: "Schlafzimmer"
+    icon: mdi:hotel
+    view: no
+    entities:
+      - light.yeelight_rgb_34ce008228f2

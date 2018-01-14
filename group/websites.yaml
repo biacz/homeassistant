@@ -1,0 +1,7 @@
+websites:
+  name: Webseiten
+  view: no
+  entities:
+    - sensor.sbjde
+    - sensor.erdde
+    - sensor.bnl

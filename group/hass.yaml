@@ -1,0 +1,6 @@
+homeassistant:
+  name: Homeassistant
+  view: no
+  entities:
+    - sensor.installed_version
+    - sensor.ha_current_version

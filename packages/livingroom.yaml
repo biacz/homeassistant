@@ -1,0 +1,85 @@
+homeassistant:
+  customize:
+    light.stehlampe:
+      friendly_name: "Stehlampe"
+      emulated_hue_name: "Stehlampe"
+      emulated_hue: true
+    light.apfel:
+      friendly_name: "Apfel"
+      emulated_hue_name: "Apfel"
+      emulated_hue: true
+    light.yeelight_rgb_34ce00822fda:
+      friendly_name: "Wohnzimmer Deckenlampe"
+      emulated_hue_name: "Deckenlampe"
+      emulated_hue: true
+
+group:
+  living_room:
+    name: "Wohnzimmer"
+    icon: mdi:television
+    view: no
+    entities:
+      - light.yeelight_rgb_34ce00822fda
+      - light.apfel
+      - light.stehlampe
+  nas:
+    name: "NAS"
+    icon: mdi:harddisk
+    view: no
+    entities:
+      - sensor.nas_ping
+      - sensor.cpu_load_total
+      - sensor.memory_usage_real
+      - sensor.network_up
+      - sensor.status_volume_1
+      - sensor.volume_used_volume_1
+
+light:
+  - platform: mqtt
+    name: "Apfel"
+    state_topic: "/house/livingroom/light_left/status"
+    command_topic: "/house/livingroom/light_left/switch"
+    optimistic: false
+    retain: true
+  - platform: mqtt
+    name: "Stehlampe"
+    state_topic: "/house/livingroom/stehlampe_klein/status"
+    command_topic: "/house/livingroom/stehlampe_klein/set"
+    optimistic: false
+    retain: true
+
+sensor:
+  - platform: synologydsm
+    host: 192.168.0.3
+    username: !secret syndsm_user
+    password: !secret syndsm_pass
+    monitored_conditions:
+      - volume_status
+      - cpu_total_load
+      - memory_real_usage
+      - network_up
+      - volume_percentage_used
+
+automation:
+  - alias: "Wohnzimmer>Bewegung>Linkes Licht an"
+    initial_state: true
+    trigger:
+      platform: numeric_state
+      entity_id: sun.sun
+      value_template: '{{ state.attributes.elevation }}'
+      below: -3
+    condition:
+      condition: or
+      conditions:
+      - condition: state
+        entity_id: device_tracker.nikos_iphone
+        state: 'home'
+      - condition: state
+        entity_id: device_tracker.nikos_iphone_2
+        state: 'home'
+    action:
+      - service: light.turn_on
+        entity_id: light.apfel
+      - service: notify.ios_nikos_iphone
+        data_template:
+          message: "Bewegung im Wohnzimmer"

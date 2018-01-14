@@ -1,0 +1,119 @@
+homeassistant:
+  name: Home
+  customize:
+    sensor.dark_sky_temperature:
+      friendly_name: "Temperatur"
+    sensor.dark_sky_apparent_temperature:
+      friendly_name: "Gefühlte Temp."
+    sensor.dark_sky_cloud_coverage:
+      friendly_name: "Wolken"
+    sensor.dark_sky_summary:
+      friendly_name: "Aktuell"
+    sensor.dark_sky_hourly_summary:
+      friendly_name: "Vorschau"
+    sensor.nas_ping:
+      friendly_name: "NAS"
+      icon: mdi:harddisk
+  latitude: !secret latitude
+  longitude: !secret longitude
+  elevation: 41
+  unit_system: metric
+  time_zone: Europe/Berlin
+  packages: !include_dir_named packages/
+
+config:
+
+frontend:
+
+http:
+  api_password: !secret http_pass
+
+updater:
+
+discovery:
+
+device_tracker:
+  - platform: bluetooth_tracker
+    track_new_devices: no
+
+conversation:
+
+history:
+
+logbook:
+
+sun:
+
+mqtt:
+  broker: !secret mqtt_broker
+  port: !secret mqtt_port
+  keepalive: "60"
+  username: !secret mqtt_username
+  password: !secret mqtt_password
+
+  #notify:
+  #- name: HASSPUSH
+  #  platform: html5
+  #  gcm_api_key: !secret hass_api_key
+  #  gcm_sender_id: !secret hass_sender_id
+  #- name: twilio
+  #  platform: twilio_sms
+  # from_number: !secret twilio_from
+  #- name: pushover
+  # platform: pushover
+  # api_key: !secret pushover_api
+  #  user_key: !secret pushover_user
+
+  #twilio:
+  #  account_sid: !secret twilio_account_id
+  #  auth_token: !secret twilio_token
+
+# Text to speech
+#tts:
+#  platform: google
+#  cache: true
+#  cache_dir: /tmp/tts
+#  time_memory: 300
+#  language: 'de'
+
+  #media_player:
+  #- platform: kodi
+  #  host: 192.168.0.101
+  #  username: !secret kodi_user
+  # password: !secret kodi_pass
+  #- platform: firetv
+
+emulated_hue:
+  off_maps_to_on_domains:
+    - script
+    - scene
+  expose_by_default: true
+  exposed_domains:
+    - light
+
+ios:
+
+# Include (named) components
+group: !include_dir_merge_named group/
+alexa:
+  intents: !include_dir_named alexa/
+# Include (list) components
+zone: !include_dir_merge_list zone/
+light: !include_dir_merge_list light/
+sensor: !include_dir_merge_list sensor/
+binary_sensor: !include_dir_merge_list binary_sensor/
+scene: !include_dir_merge_list scenes/
+automation:
+  - alias: "Sonnenaufgang>Alle Lichter aus"
+    initial_state: true
+    trigger:
+      platform: sun
+      event: sunrise
+      offset: '00:30:00'
+    action:
+      - service: light.turn_off
+        entity_id:
+          group.all_lights
+      - service: notify.ios_nikos_iphone
+        data_template:
+          message: "Alle Lichter aus"

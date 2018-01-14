@@ -1,0 +1,11 @@
+action:
+  service: light.turn_on
+  entity_id: light.kitchen_led
+  data_template:
+    brightness: 255
+    rgb_color: ['{%- if Farbe == "rot" -%} 255 {%- elif Farbe == "weiss" -%} 255 {%- else -%} 0 {%- endif -%}',
+      '{%- if Farbe == "gruen" -%} 255 {%- elif Farbe == "weiss" -%} 255 {%- else -%} 0 {%- endif -%}',
+      '{%- if Farbe == "blau" -%} 255 {%- elif Farbe == "weiss" -%} 255 {%- else -%} 0 {%- endif -%}']
+speech:
+  type: plaintext
+  text: !include ../alexa_confirm.yaml

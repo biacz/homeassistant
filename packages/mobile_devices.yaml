@@ -1,0 +1,23 @@
+homeassistant:
+  customize:
+    sensor.nikos_iphone_battery_level:
+      friendly_name: 'Niko iPhone Batterie'
+    sensor.nikos_iphone_battery_state:
+      friendly_name: 'Niko iPhone Status'
+    device_tracker.nikos_iphone:
+      entity_picture: "http://graph.facebook.com/100000008790833/picture?type=square"
+    device_tracker.nikos_iphone_2:
+      entity_picture: "http://graph.facebook.com/100000008790833/picture?type=square"
+
+
+group:
+  mobile_devices:
+    name: "Mobilgeräte"
+    view: no
+    entities:
+      - device_tracker.nikos_iphone
+      - device_tracker.nikos_iphone_2
+      - sensor.nikos_iphone_battery_level
+      - sensor.nikos_iphone_battery_state
+      - sensor.ipad_battery_level
+      - sensor.ipad_battery_state

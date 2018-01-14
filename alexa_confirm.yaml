@@ -1,0 +1,16 @@
+>
+  {%- set responses = [
+  "OK",
+  "Kein Problem",
+  "Wenn du meinst",
+  "Erledigt",
+  "Sehr gerne",
+  "Bitte schön",
+  "Lass mich das mal machen",
+  "Mal schauen ob es klappt",
+  "Wie du befiehlst",
+  "Hex Hex",
+  "Ich liebe es wenn ein Plan funktioniert",
+  "Zu deinen Diensten Meister",
+  "Das nächste Mal bitte sagen"
+  ] -%} {% set rindex = (range(0, (responses | length - 1) )|random) -%} {{responses[rindex]}}

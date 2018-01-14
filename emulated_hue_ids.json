@@ -1,0 +1,21 @@
+{
+    "1": "light.schlafzimmer_leiste",
+    "10": "scene.kitchen_sunrise",
+    "11": "scene.kitchen_dinner",
+    "12": "light.kitchen_led",
+    "13": "light.mqtt_json_light_1",
+    "14": "light.kitchen_led2",
+    "15": "light.yeelight_rgb_34ce008228f2",
+    "16": "light.yeelight_rgb_34ce00822fda",
+    "17": "scene.kitchen_atmo",
+    "18": "light.apfel",
+    "19": "light.stehlampe",
+    "2": "light.wohnzimmer_eingang",
+    "3": "light.wohnzimmer_links",
+    "4": "light.wohnzimmer_rechts",
+    "5": "scene.arbeit",
+    "6": "scene.party",
+    "7": "scene.romantisch",
+    "8": "scene.kitchen_white",
+    "9": "scene.kitchen_blue"
+}
