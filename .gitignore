@@ -1,7 +1,7 @@
 !.gitignore
 .cloud
 deps
-*.db
+*.db*
 *.log
 .uuid
 .ios.conf
