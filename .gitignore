@@ -4,6 +4,6 @@ deps
 *.db
 *.log
 .uuid
-ios.conf
+.ios.conf
 secrets.yaml
 known_devices.yaml
