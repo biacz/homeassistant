@@ -1,0 +1,25 @@
+homeassistant:
+  customize:
+
+group:
+  office:
+    name: "Büro"
+    icon: mdi:work
+    view: no
+    entities:
+      - light.silberne_lampe
+      - light.stehlampe_gross
+
+light:
+  - platform: mqtt
+    name: "Silberne Lampe"
+    state_topic: "house/office/silberne_lampe/status"
+    command_topic: "house/office/silberne_lampe/switch"
+    optimistic: false
+    retain: true
+  - platform: mqtt
+    name: "Grosse Stehlampe"
+    state_topic: "house/office/stehlampe_gross/status"
+    command_topic: "house/office/stehlampe_gross/set"
+    optimistic: false
+    retain: true

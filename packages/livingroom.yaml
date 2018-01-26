@@ -3,15 +3,15 @@ homeassistant:
     light.stehlampe:
       friendly_name: "Stehlampe"
       emulated_hue_name: "Stehlampe"
-      emulated_hue: true
     light.apfel:
       friendly_name: "Apfel"
       emulated_hue_name: "Apfel"
-      emulated_hue: true
     light.yeelight_rgb_34ce00822fda:
       friendly_name: "Wohnzimmer Deckenlampe"
-      emulated_hue_name: "Deckenlampe"
-      emulated_hue: true
+      emulated_hue_name: "Wohnzimmer Deckenlampe"
+    switch.tv:
+      friendly_name: "TV"
+      emulated_hue_name: "Fernseher"
 
 group:
   living_room:
@@ -22,6 +22,7 @@ group:
       - light.yeelight_rgb_34ce00822fda
       - light.apfel
       - light.stehlampe
+      - switch.tv
   nas:
     name: "NAS"
     icon: mdi:harddisk
@@ -45,6 +46,14 @@ light:
     name: "Stehlampe"
     state_topic: "/house/livingroom/stehlampe_klein/status"
     command_topic: "/house/livingroom/stehlampe_klein/set"
+    optimistic: false
+    retain: true
+
+switch:
+  - platform: mqtt
+    name: "TV"
+    command_topic: "/house/livingroom/tv/switch"
+    state_topic: "/house/livingroom/tv/status"
     optimistic: false
     retain: true
 

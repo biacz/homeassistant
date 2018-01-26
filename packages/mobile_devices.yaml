@@ -9,7 +9,6 @@ homeassistant:
     device_tracker.nikos_iphone_2:
       entity_picture: "http://graph.facebook.com/100000008790833/picture?type=square"
 
-
 group:
   mobile_devices:
     name: "Mobilgeräte"
